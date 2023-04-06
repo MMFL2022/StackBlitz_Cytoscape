@@ -6,7 +6,9 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import cytoscape from 'cytoscape';
+
 import elk from 'cytoscape-elk';
+cytoscape.use(elk);
 
 @Component({
   selector: 'app-network',
@@ -20,7 +22,6 @@ export class NetworkComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit() {
-    cytoscape.use(elk);
     this.cy = cytoscape({
       container: this.network.nativeElement,
 
