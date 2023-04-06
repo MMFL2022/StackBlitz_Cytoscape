@@ -20,7 +20,7 @@ export class NetworkComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit() {
-    cytoscape.use( elk );
+    cytoscape.use(elk);
     this.cy = cytoscape({
       container: this.network.nativeElement,
 
@@ -167,7 +167,7 @@ export class NetworkComponent implements AfterViewInit {
               target: 'iC3.2',
               width: 1,
             },
-          }
+          },
         ],
       },
 
