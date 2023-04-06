@@ -113,6 +113,7 @@ export class NetworkComponent implements AfterViewInit {
           { data: { id: 'iC3.1', name: 'i:funA', parent: 'C3' } },
           { data: { id: 'iC3.2', name: 'i:funB', parent: 'C3' } },
           { data: { id: 'oC3', name: 'o:funV', parent: 'C3' } },
+          { data: { id: 'db1', name: 'db1' } },
         ],
         edges: [
           {
@@ -139,6 +140,15 @@ export class NetworkComponent implements AfterViewInit {
               name: '',
               source: 'oC1',
               target: 'iC2.1',
+              width: 1,
+            },
+          },
+          {
+            data: {
+              id: 'oC1-db1',
+              name: '',
+              source: 'oC1',
+              target: 'db1',
               width: 1,
             },
           },
@@ -173,10 +183,29 @@ export class NetworkComponent implements AfterViewInit {
       },
 
       layout: {
-        name: 'elk',
+        name: 'elk', //https://js.cytoscape.org/#layouts
         fit: true, // whether to fit the viewport to the graph
         spacingFactor: 2, // Applies a multiplicative factor (>0) to expand or compress the overall area that the nodes take up
+        //rankDir: "LR",
+        elk: {
+          // priority: {
+          //   straightness: 100
+          // }
+          //considerModelOrder: "PREFER_EDGES",
+          //fixedAlignment: 'LEFTDOWN',
+          //'zoomToFit': true,
+          //'algorithm': 'layered',
+          // All options are available at http://www.eclipse.org/elk/reference.html
+          // 'org.eclipse.elk.' can be dropped from the Identifier
+          // Or look at demo.html for an example.
+          // Enums use the name of the enum e.g.
+           //'searchOrder': 'DFS',
+        }
       },
+    });
+
+    this.cy.on("click", "node", function(evt) {
+      console.log("clicked " + this.id());
     });
   }
 }
